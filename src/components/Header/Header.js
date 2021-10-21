@@ -36,8 +36,8 @@ const MainHeader = styled.div`
 `;
 
 const Nav = styled.nav`
-  margin-left: 200px;
   margin-right: auto;
+  margin-left: auto;
   display: flex;
   gap: 48px;
 `;

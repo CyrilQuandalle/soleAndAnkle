@@ -31,18 +31,18 @@ const Wrapper = styled.div`
   padding-right: 35px;
   height: 40px;
   align-items: center;
+  gap: 24px;
 `;
 
 const MarketingMessage = styled.span`
   color: ${COLORS.white};
+  margin-right: auto;
 `;
 
 const HelpLink = styled.a`
   color: inherit;
   text-decoration: none;
   outline-offset: 2px;
-  margin-left: 24px;
-  margin-right: 27px;
 
   &:not(:focus-visible) {
     outline: none;
