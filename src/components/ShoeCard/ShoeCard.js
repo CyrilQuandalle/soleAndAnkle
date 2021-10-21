@@ -38,19 +38,24 @@ const ShoeCard = ({
           {variant === "default" ? (
             <></>
           ) : (
-            <SalePrice type={variant}>
+            <SaleSticker type={variant}>
               {variant === "on-sale" ? "Sale" : "Just Released!"}
-            </SalePrice>
+            </SaleSticker>
           )}
           <Image alt="" src={imageSrc} />
         </ImageWrapper>
         <Spacer size={12} />
         <Row>
           <Name>{name}</Name>
-          <Price>{formatPrice(price)}</Price>
+          <Price type={variant}>{formatPrice(price)}</Price>
         </Row>
         <Row>
           <ColorInfo>{pluralize("Color", numOfColors)}</ColorInfo>
+          {variant === "on-sale" ? (
+            <SalePrice>{formatPrice(salePrice)}</SalePrice>
+          ) : (
+            <></>
+          )}
         </Row>
       </Wrapper>
     </Link>
@@ -90,13 +95,17 @@ const Name = styled.h3`
 
 const Price = styled.span`
   margin-left: auto;
+  color: ${(props) =>
+    props.type === "on-sale" ? COLORS.gray[700] : "currentColor"};
+  text-decoration: ${(props) =>
+    props.type === "on-sale" ? "line-through" : undefined};
 `;
 
 const ColorInfo = styled.p`
   color: ${COLORS.gray[700]};
 `;
 
-const SalePrice = styled.span`
+const SaleSticker = styled.div`
   font-weight: ${WEIGHTS.medium};
   color: ${COLORS.white};
   background-color: ${(props) =>
@@ -104,11 +113,18 @@ const SalePrice = styled.span`
   border-radius: 2px;
   position: absolute;
   right: -4px;
+  font-weight: ${WEIGHTS.bold};
   top: 12px;
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 10px;
   padding-right: 10px;
+`;
+
+const SalePrice = styled.span`
+  font-weight: ${WEIGHTS.medium};
+  color: ${COLORS.primary};
+  margin-left: auto;
 `;
 
 export default ShoeCard;
